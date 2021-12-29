@@ -23,30 +23,43 @@
                     <input type="file" id="fileToLoad" onchange="loadFileAsText()">
                 </div>
             </div>
+        </div>
+        <div class="row mb-3">
             <div class="col">
-                <h1 class="display-7">Anteprima del file</h1>
+                <h1 class="display-7">Anteprima del file originale</h1>
+                <h3 class="display-7">Base64</h3>
                 <div class="form-group">
                     <textarea class="form-control" id="textPreview" rows="10" style="white-space: pre-wrap;"></textarea>
                 </div>
             </div>
+            <div class="col">
+                <h1 class="display-7">Anteprima del file originale</h1>
+                <h3 class="display-7">Base64</h3>
+                <div class="form-group">
+                    <textarea class="form-control" id="criptedPreview" rows="10" style="white-space: pre-wrap;"></textarea>
+                </div>
+            </div>
         </div>
-        <button id="download" class="btn btn-primary" onclick="downloadBase64File('file', true)">Download</button>
+        <h1 class="display-7">Generazione della chiave</h1>
+        <div id="genChiave">
+            <label class="h5" for="keyLength" id="keyLabel">Lunghezza chiave: </label>
+            <input id="keyLength" class="form-range" type="range" min="56" max="512" value="75"
+                   onchange="chiave()">
+            <div class="row">
+                <label class="h5" for="keyOutput">Chiave generata</label>
+            </div>
+            <div class="row">
+                <textarea class="mb-3" id="keyOutput" rows=5" style="white-space: pre-wrap;" readonly></textarea>
+                <button class="btn btn-primary mb-3" onclick="copyKey()">Copia chiave</button>
+                <button class="btn btn-warning mb-3" onclick="saveKey()">Scarica chiave</button>
+                <button class="btn btn-success mb-3" onclick="criptazione()">Esegui criptazione</button>
+                <button class="btn btn-primary" id="download" onclick="downloadBase64File('criptedFile', false)">Download</button>
+            </div>
+        </div>
     </div>
     <hr>
     <div class="container">
-        <h1 class="display-3">Generazione della chiave</h1>
-        <div id="genChiave">
-            <label class="h5" for="lunghezzaChiave" id="keyLabel">Lunghezza chiave: </label>
-            <input id="lunghezzaChiave" class="form-range" type="range" min="56" max="512" value="75"
-                   onchange="chiave()">
-            <div class="row">
-                <label class="h5" for="chiaveOutput">Chiave generata</label>
-            </div>
-            <div class="row">
-                <textarea id="chiaveOutput" rows=5" style="white-space: pre-wrap;"></textarea>
-                <button class="btn btn-primary" onclick="copyKey()">Copia chiave</button>
-            </div>
-        </div>
+        <h1 class="display-3">Decriptazione</h1>
     </div>
 </div>
 </body>

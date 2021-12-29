@@ -1,9 +1,9 @@
 var testoLetto = "";
-var testocriptato = "";
+var testoCriptato = "";
 
-function criptazione(chiave) {
-    //chiave decidete voi come mettere la chiave
-    testocriptato = "";
+function criptazione() {
+    chiave = document.getElementById("keyOutput").value;
+    testoCriptato = "";
     var h = 0;
     for (var i = 0; i < testoLetto.length; i++) {
         var carattere = (testoLetto[i].charCodeAt() + chiave[h].charCodeAt());
@@ -12,14 +12,14 @@ function criptazione(chiave) {
         //console.log("num carattere :" + carattere);
         carattere = String.fromCharCode(carattere);
         //console.log("char carattere :" + carattere);
-        testocriptato = testocriptato + carattere;
+        testoCriptato = testoCriptato + carattere;
         h++;
         if (h >= chiave.length) {
             h = 0;
         }
     }
-    document.getElementById("textPreview").innerHTML = testocriptato;
-    //console.log("testo:" + testocriptato);  // a vostra discrezione come returnare il testo <3
+    document.getElementById("criptedPreview").innerHTML = testoCriptato;
+    //console.log("testo:" + testoCriptato);  // a vostra discrezione come returnare il testo <3
 }
 
 function decriptazione(chiave) // decidete voi come buttare dentro la chiave ed il testo criptato
@@ -58,8 +58,7 @@ function loadFileAsText() {
 }
 
 function downloadBase64File(fileName, dec) {
-    contentBase64 = testoLetto;
-
+    contentBase64 = (dec) ? testoLetto : testoCriptato; //TODO: Mettere caso per decriptazione
     const downloadLink = document.createElement('a');
     document.body.appendChild(downloadLink);
 
@@ -70,24 +69,36 @@ function downloadBase64File(fileName, dec) {
 }
 
 function copyKey() {
-    navigator.clipboard.writeText(document.getElementById("chiaveOutput").value);
+    navigator.clipboard.writeText(document.getElementById("keyOutput").value);
     //alert("Chiave copiata all'interno degli appunti!");
+}
+
+function saveKey(){
+    var text = document.getElementById("keyOutput").value;
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', "savedKey.txt");
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
 }
 
 function showKeyLenght(value) {
     document.getElementById("keyLabel").innerText = "Lunghezza chiave: " + value;
-    //document.getElementById("chiaveOutput").setAttribute("rows", (value / 15));
+    //document.getElementById("keyOutput").setAttribute("rows", (value / 15));
 }
 
 function chiave() {
     var chiave = ""; //Variabile dove verra' salvata la
     //Prendo il valore della lunghezza della chiave
-    let l = parseInt(document.getElementById("lunghezzaChiave").value);
+    let l = parseInt(document.getElementById("keyLength").value);
     //Modifico la UI
     showKeyLenght(l);
 
     //Oggetto dell'area di testo
-    let objOut = document.getElementById("chiaveOutput");
+    let objOut = document.getElementById("keyOutput");
 
     //Genero la chiave
     for (let i = 0; i < l; i++) chiave += String.fromCharCode(Math.floor(Math.random() * (126 - 33) + 33));
