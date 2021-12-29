@@ -20,7 +20,7 @@
             <div class="col">
                 <h1 class="display-7">Caricamento del file</h1>
                 <div class="col">
-                    <input type="file" id="fileToLoad" onchange="loadFileAsText()">
+                    <input type="file" id="fileToLoad" onchange="loadFileAsText(false)">
                 </div>
             </div>
         </div>
@@ -33,10 +33,11 @@
                 </div>
             </div>
             <div class="col">
-                <h1 class="display-7">Anteprima del file originale</h1>
-                <h3 class="display-7">Base64</h3>
+                <h1 class="display-7">Anteprima del file criptato</h1>
+                <h3 class="display-7">UTF-8</h3>
                 <div class="form-group">
-                    <textarea class="form-control" id="criptedPreview" rows="10" style="white-space: pre-wrap;"></textarea>
+                    <textarea class="form-control" id="criptedPreview" rows="10"
+                              style="white-space: pre-wrap;"></textarea>
                 </div>
             </div>
         </div>
@@ -53,13 +54,11 @@
                 <button class="btn btn-primary mb-3" onclick="copyKey()">Copia chiave</button>
                 <button class="btn btn-warning mb-3" onclick="saveKey()">Scarica chiave</button>
                 <button class="btn btn-success mb-3" onclick="criptazione()">Esegui criptazione</button>
-                <button class="btn btn-primary" id="download" onclick="downloadBase64File('criptedFile', false)">Download</button>
+                <button class="btn btn-primary" id="download" onclick="downloadBase64File('criptedFile', false)">
+                    Download file criptato
+                </button>
             </div>
         </div>
-    </div>
-    <hr>
-    <div class="container">
-        <h1 class="display-3">Decriptazione</h1>
     </div>
 </div>
 </body>

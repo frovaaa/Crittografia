@@ -1,5 +1,7 @@
 var testoLetto = "";
 var testoCriptato = "";
+var testoDecriptato = "";
+var key = "";
 
 function criptazione() {
     chiave = document.getElementById("keyOutput").value;
@@ -22,8 +24,9 @@ function criptazione() {
     //console.log("testo:" + testoCriptato);  // a vostra discrezione come returnare il testo <3
 }
 
-function decriptazione(chiave) // decidete voi come buttare dentro la chiave ed il testo criptato
+function decriptazione() // decidete voi come buttare dentro la chiave ed il testo criptato
 {
+    var chiave = key;
     var testo_criptato = document.getElementById("textPreview").value;
     testodecriptato = "";
     var h = 0;
@@ -40,25 +43,25 @@ function decriptazione(chiave) // decidete voi come buttare dentro la chiave ed 
             h = 0;
         }
     }
-    document.getElementById("textPreview").innerHTML = testodecriptato;
-    return testodecriptato;
+    document.getElementById("decriptedPreview").innerHTML = testodecriptato;
+    testoDecriptato = testodecriptato;
     //console.log(testodecriptato); // a vostra discrezione come returnare il testo <3
 }
 
 
-function loadFileAsText() {
+function loadFileAsText(asText) {
     var fileToLoad = document.getElementById("fileToLoad").files[0];
     var fileReader = new FileReader();
     fileReader.onload = function (fileLoadedEvent) {
         testoLetto = fileLoadedEvent.target.result;
         document.getElementById("textPreview").innerHTML = testoLetto;
     };
-    fileReader.readAsDataURL(fileToLoad, "UTF-8");
-
+    if (asText) fileReader.readAsText(fileToLoad, "UTF-8");
+    else fileReader.readAsDataURL(fileToLoad);
 }
 
 function downloadBase64File(fileName, dec) {
-    contentBase64 = (dec) ? testoLetto : testoCriptato; //TODO: Mettere caso per decriptazione
+    contentBase64 = (dec) ? testoDecriptato : testoCriptato;
     const downloadLink = document.createElement('a');
     document.body.appendChild(downloadLink);
 
@@ -73,7 +76,7 @@ function copyKey() {
     //alert("Chiave copiata all'interno degli appunti!");
 }
 
-function saveKey(){
+function saveKey() {
     var text = document.getElementById("keyOutput").value;
     var element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
@@ -104,4 +107,14 @@ function chiave() {
     for (let i = 0; i < l; i++) chiave += String.fromCharCode(Math.floor(Math.random() * (126 - 33) + 33));
 
     objOut.value = chiave;
+}
+
+function loadKeyFileAsText() {
+    var fileToLoad = document.getElementById("keyFile").files[0];
+    var fileReader = new FileReader();
+    fileReader.onload = function (fileLoadedEvent) {
+        key = fileLoadedEvent.target.result;
+        document.getElementById("keyManual").innerHTML = key;
+    };
+    fileReader.readAsText(fileToLoad, "UTF-8");
 }
