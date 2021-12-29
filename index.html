@@ -9,49 +9,43 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!--BOOTSTRAP ICONS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <script src="javascript.js">
-
-    </script>
+    <script src="javascript.js"></script>
 
 </head>
 <body onload="chiave()">
 <div class="container">
-    <h1 class="display-6">Crittografia</h1>
-
-    <div class="row mb-5">
-        <div class="col">
-            <h1 class="display-7">Caricamento del file</h1>
+    <div class="container">
+        <h1 class="display-3">Criptazione</h1>
+        <div class="row mb-5">
             <div class="col">
-                <input type="file" id="fileToLoad" onchange="loadFileAsText()">
+                <h1 class="display-7">Caricamento del file</h1>
+                <div class="col">
+                    <input type="file" id="fileToLoad" onchange="loadFileAsText()">
+                </div>
+            </div>
+            <div class="col">
+                <h1 class="display-7">Anteprima del file</h1>
+                <div class="form-group">
+                    <textarea class="form-control" id="textPreview" rows="10" style="white-space: pre-wrap;"></textarea>
+                </div>
             </div>
         </div>
-        <div class="col">
-            <h1 class="display-7">Anteprima del file</h1>
-            <div class="form-group">
-                <textarea class="form-control" id="textPreview" rows="10" style="white-space: pre-wrap;"></textarea>
-            </div>
-        </div>
+        <button id="download" class="btn btn-primary" onclick="downloadBase64File('file', true)">Download</button>
     </div>
-
-    <button id="download" class="btn btn-primary" onclick="downloadBase64File('file')">Download</button>
-</div>
-<div class="container">
-    <h1>Generazione della chiave</h1>
-    <div id="genChiave">
-        <label for="lunghezzaChiave" id="keyLabel">Lunghezza chiave: </label>
-        <input id="lunghezzaChiave" class="form-range" type="range" min="56" max="512" value="75" onchange="chiave()">
-        <!--        <select id="lunghezzaChiave">-->
-        <!--        <option value="56">56</option>-->
-        <!--        <option value="64">64</option>-->
-        <!--        <option value="128">128</option>-->
-        <!--        <option value="256">256</option>-->
-        </select>
-        <div class="row">
-            <label for="chiaveOutput">Chiave generata</label>
-        </div>
-        <div class="row">
-            <textarea id="chiaveOutput" rows=5" style="white-space: pre-wrap;"></textarea>
-            <button class="btn btn-primary" onclick="copyKey()">Copia chiave</button>
+    <hr>
+    <div class="container">
+        <h1 class="display-3">Generazione della chiave</h1>
+        <div id="genChiave">
+            <label class="h5" for="lunghezzaChiave" id="keyLabel">Lunghezza chiave: </label>
+            <input id="lunghezzaChiave" class="form-range" type="range" min="56" max="512" value="75"
+                   onchange="chiave()">
+            <div class="row">
+                <label class="h5" for="chiaveOutput">Chiave generata</label>
+            </div>
+            <div class="row">
+                <textarea id="chiaveOutput" rows=5" style="white-space: pre-wrap;"></textarea>
+                <button class="btn btn-primary" onclick="copyKey()">Copia chiave</button>
+            </div>
         </div>
     </div>
 </div>
