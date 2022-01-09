@@ -41,8 +41,40 @@
                 </div>
             </div>
         </div>
-        <h1 class="display-7">Generazione della chiave</h1>
-        <div id="genChiave">
+
+        <div class="row mb-6">
+            <button class="btn btn-success mb-3" onclick="criptazione()">Esegui criptazione</button>
+            <button class="btn btn-primary" id="download" onclick="downloadBase64File('criptedFile', false)">
+                Download file criptato
+            </button>
+        </div>
+
+        <!--        <div class="mb-6">-->
+        <!--
+                <label for="sel_key">Chiave: </label>-->
+        <!--            <input type="radio" class="form-select" id="sel_key" onchange="KeyMode();">-->
+        <!--            <option value="0">Inserisci la chiave</option>-->
+        <!--            <option value="1">Genera chiave</option>-->
+        <!--            </input>-->
+        <!--        </div>-->
+
+        <h3>Chiave:</h3>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="sel_key" id="sel_key1" onload="KeyMode()" onchange="KeyMode()" checked>
+            <label class="form-check-label" for="sel_key1">
+                Inserisci la chiave
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="sel_key" id="sel_key2" onchange="KeyMode()">
+            <label class="form-check-label" for="sel_key2">
+                Genera chiave
+            </label>
+        </div>
+
+        <div id="genChiave" style="display: none;">
+            <h1 class="display-7">Generazione della chiave</h1>
+
             <label class="h5" for="keyLength" id="keyLabel">Lunghezza chiave: </label>
             <input id="keyLength" class="form-range" type="range" min="56" max="512" value="75"
                    onchange="chiave()">
@@ -53,12 +85,14 @@
                 <textarea class="mb-3" id="keyOutput" rows=5" style="white-space: pre-wrap;" readonly></textarea>
                 <button class="btn btn-primary mb-3" onclick="copyKey()">Copia chiave</button>
                 <button class="btn btn-warning mb-3" onclick="saveKey()">Scarica chiave</button>
-                <button class="btn btn-success mb-3" onclick="criptazione()">Esegui criptazione</button>
-                <button class="btn btn-primary" id="download" onclick="downloadBase64File('criptedFile', false)">
-                    Download file criptato
-                </button>
             </div>
         </div>
+
+        <div id="insChiave" style="display: none;">
+            <h1 class="display-7">Inserisci chiave</h1>
+
+        </div>
+
     </div>
 </div>
 </body>

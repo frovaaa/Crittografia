@@ -118,3 +118,19 @@ function loadKeyFileAsText() {
     };
     fileReader.readAsText(fileToLoad, "UTF-8");
 }
+
+function KeyMode()
+{
+
+    if(document.getElementById("sel_key2").checked){
+        document.getElementById("genChiave").style.display = "block";
+    }else{
+        document.getElementById("genChiave").style.display = "none";
+    }
+    if(document.getElementById("sel_key1").checked){
+        document.getElementById("insChiave").style.display = "block";
+    }else{
+        document.getElementById("insChiave").style.display = "none";
+    }
+
+}
