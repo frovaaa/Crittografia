@@ -13,10 +13,30 @@
 
 </head>
 <body onload="chiave()">
-<div class="container">
-    <div>
-        <a href="decriptazione.html">Decriptazione</a>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f6f6f6">
+    <div class="container-fluid">
+        <div class="d-flex flex-grow-1">
+            <span class="w-100 d-lg-none d-block"></span>
+            <a class="navbar-brand" href="">
+                <b>Criptazione</b>
+                <span>Frova-Pocaterra-Wang</span>
+            </a>
+            <div class="w-100 text-right">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#myNavbar7">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </div>
+        <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar7">
+            <ul class="navbar-nav ms-auto flex-nowrap">
+                <li class="nav-item">
+                    <a class="btn btn-primary" role="button" id="summaryButton" href="decriptazione.html">Decriptazione</a>
+                </li>
+            </ul>
+        </div>
     </div>
+</nav>
+<div class="container">
     <div class="container">
         <h1 class="display-3">Criptazione</h1>
         <div class="row mb-5">
@@ -32,7 +52,7 @@
                 <h1 class="display-7">Anteprima del file originale</h1>
                 <h3 class="display-7">Base64</h3>
                 <div class="form-group">
-                    <textarea class="form-control" id="textPreview" rows="10" style="white-space: pre-wrap;"></textarea>
+                    <textarea class="form-control" id="textPreview" rows="10" style="white-space: pre-wrap;" readonly></textarea>
                 </div>
             </div>
             <div class="col">
@@ -63,7 +83,8 @@
 
         <h3>Chiave:</h3>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="sel_key" id="sel_key1" onload="KeyMode()" onchange="KeyMode()" checked>
+            <input class="form-check-input" type="radio" name="sel_key" id="sel_key1" onload="KeyMode()"
+                   onchange="KeyMode()" checked>
             <label class="form-check-label" for="sel_key1">
                 Inserisci la chiave
             </label>
@@ -100,7 +121,7 @@
                 </div>
                 <h3 class="display-7">Anteprima chiave</h3>
                 <div class="form-group mb-3">
-                    <textarea class="form-control" id="keyManual" rows="5" style="white-space: pre-wrap;"></textarea>
+                    <textarea class="form-control" id="keyManual" rows="5" style="white-space: pre-wrap;" maxlength="512"></textarea>
                 </div>
             </div>
         </div>

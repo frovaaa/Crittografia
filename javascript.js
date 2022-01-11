@@ -2,14 +2,16 @@ var testoLetto = "";
 var testoCriptato = "";
 var testoDecriptato = "";
 var key = "";
-
+var load = false;
 var flagCript;
 
 function criptazione() {
-    if(testoLetto == "") testoLetto = btoa(document.getElementById("textPreview").value);
-    console.log(testoLetto);
+    if (testoLetto == "") testoLetto = btoa(document.getElementById("textPreview").value);
 
-    chiave = document.getElementById("keyOutput").value;
+    let chiave;
+    if (document.getElementById("sel_key2").checked) chiave = document.getElementById("keyOutput").value;
+    else if (document.getElementById("sel_key1").checked) chiave = document.getElementById("keyManual").value;
+
     testoCriptato = "";
     var h = 0;
     for (var i = 0; i < testoLetto.length; i++) {
@@ -22,27 +24,28 @@ function criptazione() {
         }
     }
     document.getElementById("criptedPreview").innerHTML = testoCriptato;
-    //console.log("testo:" + testoCriptato);  // a vostra discrezione come returnare il testo <3
+    //console.log("testo:" + testoCriptato);
 }
 
-function decriptazione(){
-    var chiave ;
-    if(key!="") chiave=key;
-    else chiave= document.getElementById("keyManual").value;
+function decriptazione() {
+    var chiaveDec;
+
+    if (!load) chiaveDec = document.getElementById("keyManual").value;
+    else chiaveDec = key;
 
     var testo_criptato = document.getElementById("textPreview").value;
     testodecriptato = "";
     var h = 0;
     for (var i = 0; i < testo_criptato.length; i++) {
-        var carattere = (testo_criptato[i].charCodeAt() - chiave[h].charCodeAt());
+        var carattere = (testo_criptato[i].charCodeAt() - chiaveDec[h].charCodeAt());
         //console.log(testo_criptato[i] + " val : " + testo_criptato[i].charCodeAt());
-        //console.log(chiave[h] + " val : " + chiave[h].charCodeAt());
+        //console.log(chiaveDec[h] + " val : " + chiaveDec[h].charCodeAt());
         //console.log("num carattere :" + carattere);
         carattere = String.fromCharCode(carattere);
         //console.log("char carattere :" + carattere);
         testodecriptato = testodecriptato + carattere;
         h++;
-        if (h >= chiave.length) {
+        if (h >= chiaveDec.length) {
             h = 0;
         }
     }
@@ -112,9 +115,9 @@ function chiave() {
 
     KeyMode();
 }
-var pieno=false;
-function loadKeyFileAsText() {
 
+function loadKeyFileAsText() {
+    load = true;
     var fileToLoad = document.getElementById("keyFile").files[0];
     var fileReader = new FileReader();
     fileReader.onload = function (fileLoadedEvent) {
@@ -125,17 +128,15 @@ function loadKeyFileAsText() {
     fileReader.readAsText(fileToLoad, "UTF-8");
 }
 
-function KeyMode()
-{
-
-    if(document.getElementById("sel_key2").checked){
+function KeyMode() {
+    if (document.getElementById("sel_key2").checked) {
         document.getElementById("genChiave").style.display = "block";
-    }else{
+    } else {
         document.getElementById("genChiave").style.display = "none";
     }
-    if(document.getElementById("sel_key1").checked){
+    if (document.getElementById("sel_key1").checked) {
         document.getElementById("insChiave").style.display = "block";
-    }else{
+    } else {
         document.getElementById("insChiave").style.display = "none";
     }
 
