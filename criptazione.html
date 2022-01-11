@@ -30,7 +30,8 @@
         <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar7">
             <ul class="navbar-nav ms-auto flex-nowrap">
                 <li class="nav-item">
-                    <a class="btn btn-primary" role="button" id="summaryButton" href="decriptazione.html">Decriptazione</a>
+                    <a class="btn btn-primary" role="button" id="summaryButton"
+                       href="decriptazione.html">Decriptazione</a>
                 </li>
             </ul>
         </div>
@@ -52,7 +53,8 @@
                 <h1 class="display-7">Anteprima del file originale</h1>
                 <h3 class="display-7">Base64</h3>
                 <div class="form-group">
-                    <textarea class="form-control" id="textPreview" rows="10" style="white-space: pre-wrap;" readonly></textarea>
+                    <textarea class="form-control" id="textPreview" rows="10" style="white-space: pre-wrap;"
+                              readonly></textarea>
                 </div>
             </div>
             <div class="col">
@@ -60,28 +62,18 @@
                 <h3 class="display-7">UTF-8</h3>
                 <div class="form-group">
                     <textarea class="form-control" id="criptedPreview" rows="10"
-                              style="white-space: pre-wrap;"></textarea>
+                              style="white-space: pre-wrap;" readonly></textarea>
                 </div>
             </div>
         </div>
 
         <div class="row mb-6">
             <button class="btn btn-success mb-3" onclick="criptazione()">Esegui criptazione</button>
-            <button class="btn btn-primary" id="download" onclick="downloadBase64File('criptedFile', false)">
+            <button class="btn btn-primary mb-3" id="download" onclick="downloadBase64File('criptedFile', false)">
                 Download file criptato
             </button>
         </div>
-
-        <!--        <div class="mb-6">-->
-        <!--
-                <label for="sel_key">Chiave: </label>-->
-        <!--            <input type="radio" class="form-select" id="sel_key" onchange="KeyMode();">-->
-        <!--            <option value="0">Inserisci la chiave</option>-->
-        <!--            <option value="1">Genera chiave</option>-->
-        <!--            </input>-->
-        <!--        </div>-->
-
-        <h3>Chiave:</h3>
+        <h3>Modalità di inserimento della chiave</h3>
         <div class="form-check">
             <input class="form-check-input" type="radio" name="sel_key" id="sel_key1" onload="KeyMode()"
                    onchange="KeyMode()" checked>
@@ -119,9 +111,10 @@
                 <div class="col mb-3">
                     <input type="file" id="keyFile" onchange="loadKeyFileAsText()">
                 </div>
-                <h3 class="display-7">Anteprima chiave</h3>
+                <h3 class="display-7">Chiave</h3>
                 <div class="form-group mb-3">
-                    <textarea class="form-control" id="keyManual" rows="5" style="white-space: pre-wrap;" maxlength="512"></textarea>
+                    <textarea class="form-control" id="keyManual" rows="5" style="white-space: pre-wrap;"
+                              maxlength="512"></textarea>
                 </div>
             </div>
         </div>
