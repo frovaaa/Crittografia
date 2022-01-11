@@ -6,7 +6,8 @@ var key = "";
 var flagCript;
 
 function criptazione() {
-    if(testoLetto == "") testoLetto = plainToBase64(document.getElementById("textPreview").value);
+    if(testoLetto == "") testoLetto = btoa(document.getElementById("textPreview").value);
+    console.log(testoLetto);
 
     chiave = document.getElementById("keyOutput").value;
     testoCriptato = "";
@@ -22,9 +23,6 @@ function criptazione() {
     }
     document.getElementById("criptedPreview").innerHTML = testoCriptato;
     //console.log("testo:" + testoCriptato);  // a vostra discrezione come returnare il testo <3
-}
-function plainToBase64(){
-
 }
 
 function decriptazione(){
