@@ -107,6 +107,8 @@ function chiave() {
     for (let i = 0; i < l; i++) chiave += String.fromCharCode(Math.floor(Math.random() * (126 - 33) + 33));
 
     objOut.value = chiave;
+
+    KeyMode();
 }
 
 function loadKeyFileAsText() {

@@ -90,7 +90,16 @@
 
         <div id="insChiave" style="display: none;">
             <h1 class="display-7">Inserisci chiave</h1>
-
+            <div class="row mb-3">
+                <h3 class="display-7">Caricamento via file</h3>
+                <div class="col mb-3">
+                    <input type="file" id="keyFile" onchange="loadKeyFileAsText()">
+                </div>
+                <h3 class="display-7">Anteprima chiave</h3>
+                <div class="form-group mb-3">
+                    <textarea class="form-control" id="keyManual" rows="5" style="white-space: pre-wrap;" readonly></textarea>
+                </div>
+            </div>
         </div>
 
     </div>
