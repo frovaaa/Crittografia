@@ -3,17 +3,17 @@ var testoCriptato = "";
 var testoDecriptato = "";
 var key = "";
 
+var flagCript;
+
 function criptazione() {
+    if(testoLetto == "") testoLetto = plainToBase64(document.getElementById("textPreview").value);
+
     chiave = document.getElementById("keyOutput").value;
     testoCriptato = "";
     var h = 0;
     for (var i = 0; i < testoLetto.length; i++) {
         var carattere = (testoLetto[i].charCodeAt() + chiave[h].charCodeAt());
-        //console.log(testoLetto[i] + " val : " + testoLetto[i].charCodeAt());
-        //console.log(chiave[h] + " val : " + chiave[h].charCodeAt());
-        //console.log("num carattere :" + carattere);
         carattere = String.fromCharCode(carattere);
-        //console.log("char carattere :" + carattere);
         testoCriptato = testoCriptato + carattere;
         h++;
         if (h >= chiave.length) {
@@ -23,10 +23,15 @@ function criptazione() {
     document.getElementById("criptedPreview").innerHTML = testoCriptato;
     //console.log("testo:" + testoCriptato);  // a vostra discrezione come returnare il testo <3
 }
+function plainToBase64(){
 
-function decriptazione() // decidete voi come buttare dentro la chiave ed il testo criptato
-{
-    var chiave = key;
+}
+
+function decriptazione(){
+    var chiave ;
+    if(key!="") chiave=key;
+    else chiave= document.getElementById("keyManual").value;
+
     var testo_criptato = document.getElementById("textPreview").value;
     testodecriptato = "";
     var h = 0;
@@ -60,6 +65,7 @@ function loadFileAsText(asText) {
     else fileReader.readAsDataURL(fileToLoad);
 }
 
+
 function downloadBase64File(fileName, dec) {
     contentBase64 = (dec) ? testoDecriptato : testoCriptato;
     const downloadLink = document.createElement('a');
@@ -73,14 +79,13 @@ function downloadBase64File(fileName, dec) {
 
 function copyKey() {
     navigator.clipboard.writeText(document.getElementById("keyOutput").value);
-    //alert("Chiave copiata all'interno degli appunti!");
 }
 
 function saveKey() {
     var text = document.getElementById("keyOutput").value;
     var element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-    element.setAttribute('download', "savedKey.txt");
+    element.setAttribute('download', "savedKey.pem");
 
     element.style.display = 'none';
     document.body.appendChild(element);
@@ -90,7 +95,6 @@ function saveKey() {
 
 function showKeyLenght(value) {
     document.getElementById("keyLabel").innerText = "Lunghezza chiave: " + value;
-    //document.getElementById("keyOutput").setAttribute("rows", (value / 15));
 }
 
 function chiave() {
@@ -110,14 +114,16 @@ function chiave() {
 
     KeyMode();
 }
-
+var pieno=false;
 function loadKeyFileAsText() {
+
     var fileToLoad = document.getElementById("keyFile").files[0];
     var fileReader = new FileReader();
     fileReader.onload = function (fileLoadedEvent) {
         key = fileLoadedEvent.target.result;
         document.getElementById("keyManual").innerHTML = key;
     };
+
     fileReader.readAsText(fileToLoad, "UTF-8");
 }
 
